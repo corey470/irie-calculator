@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Irie Calculator | Everyday Auto, Home, Finance, Fuel & Shopping Calculators</title>
+    <meta
+      name="description"
+      content="Irie Calculator helps people compare everyday money decisions with simple auto, home, finance, fuel, grocery, shopping, and travel calculators."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#080808" />
+    <meta property="og:title" content="Irie Calculator" />
+    <meta property="og:description" content="Simple calculators for lease vs finance, home payments, rent, debt payoff, fuel costs, groceries, unit prices, and trip totals." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700&family=Syne:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=irie" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Irie Calculator",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "description": "Everyday calculators for auto leases, home payments, rent, debt payoff, fuel costs, grocery budgets, shopping unit prices, and trip totals.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "Lease vs finance calculator",
+          "Home payment calculator",
+          "Rent check calculator",
+          "Rent vs buy calculator",
+          "Debt payoff calculator",
+          "Loan payment calculator",
+          "Commute cost calculator",
+          "Road trip cost calculator",
+          "Grocery budget calculator",
+          "Unit price calculator",
+          "Trip total calculator"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#auto" aria-label="Irie Calculator home">
+        <span class="brand-mark">I</span>
+        <span>Irie Calculator</span>
+      </a>
+      <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+        <a href="#auto">Auto</a>
+        <a href="#home">Home</a>
+        <a href="#finance">Finance</a>
+        <a href="#fuel">Fuel</a>
+        <a href="#shopping">Shopping</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-cta" href="#auto">Auto</a>
+        <button class="share-button share-trigger" type="button">Share</button>
+      </div>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-controls="primaryNav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="utility-bar" aria-label="Location defaults and sharing">
+        <label>
+          ZIP defaults
+          <span class="input-suffix">
+            <input type="text" inputmode="numeric" id="zipCode" maxlength="5" placeholder="32169" />
+            <span>ZIP</span>
+          </span>
+        </label>
+        <button class="preset-button" type="button" id="applyZipDefaults">Apply local defaults</button>
+        <button class="share-button share-trigger" type="button">Share setup</button>
+        <p id="shareStatus" aria-live="polite">Save the exact setup with Share. ZIP defaults are starter estimates, not live quotes.</p>
+      </section>
+
+      <section class="calculator-shell page-view" id="auto" data-page="auto">
+        <div class="orb orb-one" aria-hidden="true"></div>
+        <div class="orb orb-three" aria-hidden="true"></div>
+        <div class="section-heading">
+          <p class="eyebrow">Auto Calculator</p>
+          <h1>Lease vs Finance</h1>
+          <p>
+            Enter the quote. The calculator estimates monthly payment, total
+            cost, equity, mileage risk, and the 1.25% lease rule.
+          </p>
+          <div class="preset-bar" aria-label="Example deal presets">
+            <button class="preset-button" type="button" id="teslaPreset">
+              Load $299 Model 3 Example
+            </button>
+            <span>Real formulas. Your quote controls the result. Taxes, fees, credit, mileage, and resale assumptions still matter.</span>
+          </div>
+        </div>
+
+        <section class="series-marquee" id="series" aria-label="Calculator series">
+          <div class="marquee-track" aria-hidden="true">
+            <span>Lease vs Finance</span>
+            <span>Home Buying</span>
+            <span>Gas Cost</span>
+            <span>Debt Payoff</span>
+            <span>Grocery Budget</span>
+            <span>Rent vs Buy</span>
+            <span>Lease vs Finance</span>
+            <span>Home Buying</span>
+            <span>Gas Cost</span>
+            <span>Debt Payoff</span>
+            <span>Grocery Budget</span>
+            <span>Rent vs Buy</span>
+          </div>
+        </section>
+
+        <div class="calculator-layout">
+          <div class="calculator-stack">
+            <form class="input-panel" id="calculatorForm">
+              <div class="input-tabs" id="inputs" role="tablist" aria-label="Calculator input groups">
+                <button class="input-tab active" id="tab-deal" type="button" role="tab" aria-selected="true" aria-controls="panel-deal" data-panel="deal">Deal</button>
+                <button class="input-tab" id="tab-lease" type="button" role="tab" aria-selected="false" aria-controls="panel-lease" data-panel="lease">Lease</button>
+                <button class="input-tab" id="tab-finance" type="button" role="tab" aria-selected="false" aria-controls="panel-finance" data-panel="finance">Finance</button>
+                <button class="input-tab" id="tab-risk" type="button" role="tab" aria-selected="false" aria-controls="panel-risk" data-panel="risk">Miles</button>
+              </div>
+              <fieldset class="input-section active" id="panel-deal" role="tabpanel" aria-labelledby="tab-deal" data-panel="deal">
+                <legend>Vehicle & Deal</legend>
+                <label>
+                  Sticker price
+                  <input type="number" inputmode="decimal" id="msrp" value="42000" min="0" step="100" />
+                </label>
+                <label>
+                  Price you can get
+                  <input type="number" inputmode="decimal" id="price" value="39200" min="0" step="100" />
+                </label>
+                <label>
+                  Sales tax
+                  <span class="input-suffix">
+                    <input type="number" inputmode="decimal" id="taxRate" value="6.5" min="0" max="15" step="0.1" />
+                    <span>%</span>
+                  </span>
+                </label>
+                <label>
+                  Dealer/doc/registration fees
+                  <input type="number" inputmode="decimal" id="fees" value="950" min="0" step="25" />
+                </label>
+              </fieldset>
+
+            <fieldset class="input-section" id="panel-lease" role="tabpanel" aria-labelledby="tab-lease" data-panel="lease">
+              <legend>Lease Quote</legend>
+              <label>
+                Lease length
+                <span class="input-suffix">
+                  <select id="leaseTerm">
+                    <option value="24">24</option>
+                    <option value="36" selected>36</option>
+                    <option value="39">39</option>
+                    <option value="48">48</option>
+                  </select>
+                  <span>mo</span>
+                </span>
+              </label>
+              <label>
+                End value estimate
+                <span class="input-suffix">
+                  <input type="number" inputmode="decimal" id="residualPct" value="61" min="1" max="95" step="0.1" />
+                  <span>% sticker</span>
+                </span>
+              </label>
+              <label>
+                Monthly lease payment
+                <span class="input-suffix">
+                  <input type="number" inputmode="decimal" id="quotedLeasePayment" value="0" min="0" step="1" />
+                  <span>/mo</span>
+                </span>
+              </label>
+              <label>
+                Lease rebates
+                <input type="number" inputmode="decimal" id="leaseIncentives" value="1500" min="0" step="100" />
+              </label>
+              <label>
+                Cash due at signing
+                <input type="number" inputmode="decimal" id="leaseDown" value="1500" min="0" step="100" />
+              </label>
+              <p class="field-help">
+                If the ad says $299/mo, put 299 in monthly payment. Leave it at 0 only when you want the calculator to estimate the payment from the advanced numbers.
+              </p>
+              <details class="advanced-fields">
+                <summary>Advanced lease details</summary>
+                <div>
+                  <label>
+                    Lease rate
+                    <input type="number" inputmode="decimal" id="moneyFactor" value="0.00210" min="0" step="0.00001" />
+                  </label>
+                  <label>
+                    Bank fee
+                    <input type="number" inputmode="decimal" id="acquisitionFee" value="695" min="0" step="25" />
+                  </label>
+                  <label>
+                    Turn-in fee
+                    <input type="number" inputmode="decimal" id="dispositionFee" value="395" min="0" step="25" />
+                  </label>
+                </div>
+              </details>
+            </fieldset>
+
+            <fieldset class="input-section" id="panel-finance" role="tabpanel" aria-labelledby="tab-finance" data-panel="finance">
+              <legend>Finance Quote</legend>
+              <label>
+                Loan length
+                <span class="input-suffix">
+                  <select id="financeTerm">
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="60" selected>60</option>
+                    <option value="72">72</option>
+                    <option value="84">84</option>
+                  </select>
+                  <span>mo</span>
+                </span>
+              </label>
+              <label>
+                Interest rate
+                <span class="input-suffix">
+                  <input type="number" inputmode="decimal" id="apr" value="6.9" min="0" max="40" step="0.1" />
+                  <span>%</span>
+                </span>
+              </label>
+              <label>
+                Finance rebates
+                <input type="number" inputmode="decimal" id="financeIncentives" value="1000" min="0" step="100" />
+              </label>
+              <label>
+                Down payment or trade
+                <input type="number" inputmode="decimal" id="financeDown" value="3500" min="0" step="100" />
+              </label>
+              <label>
+                Value after lease length
+                <span class="input-suffix">
+                  <input type="number" inputmode="decimal" id="resalePct" value="55" min="1" max="95" step="0.1" />
+                  <span>% sticker</span>
+                </span>
+              </label>
+            </fieldset>
+
+            <fieldset class="input-section" id="panel-risk" role="tabpanel" aria-labelledby="tab-risk" data-panel="risk">
+              <legend>Use & Risk</legend>
+              <label>
+                Miles you drive each year
+                <input type="number" inputmode="numeric" id="annualMiles" value="12000" min="0" step="500" />
+              </label>
+              <label>
+                Lease miles included
+                <select id="allowedMiles">
+                  <option value="7500">7,500</option>
+                  <option value="10000">10,000</option>
+                  <option value="12000" selected>12,000</option>
+                  <option value="15000">15,000</option>
+                </select>
+              </label>
+              <label>
+                Extra-mile charge
+                <span class="input-suffix">
+                  <input type="number" inputmode="decimal" id="overageRate" value="0.25" min="0" step="0.01" />
+                  <span>/mi</span>
+                </span>
+              </label>
+              <label>
+                Extra repair budget if buying
+                <span class="input-suffix">
+                  <input type="number" inputmode="decimal" id="maintenance" value="45" min="0" step="5" />
+                  <span>/mo</span>
+                </span>
+              </label>
+            </fieldset>
+            </form>
+
+            <section class="mini-calculator" aria-label="Gas cost calculator">
+              <div>
+                <p class="eyebrow">Fuel Calculator</p>
+                <h3>Gas cost</h3>
+              </div>
+              <div class="mini-form">
+                <label>
+                  Miles / month
+                  <input type="number" inputmode="numeric" id="fuelMiles" value="1000" min="0" step="50" />
+                </label>
+                <label>
+                  MPG
+                  <input type="number" inputmode="decimal" id="fuelMpg" value="28" min="1" step="1" />
+                </label>
+                <label>
+                  Gas price
+                  <span class="input-suffix">
+                    <input type="number" inputmode="decimal" id="fuelPrice" value="3.65" min="0" step="0.05" />
+                    <span>/gal</span>
+                  </span>
+                </label>
+              </div>
+              <div class="mini-result">
+                <span>Estimated fuel cost</span>
+                <strong id="fuelCost">$0/mo</strong>
+              </div>
+            </section>
+          </div>
+
+          <aside class="results-panel" aria-live="polite">
+            <div class="result-topline">
+              <div>
+                <p class="eyebrow">Recommendation</p>
+                <h3 id="recommendation">Enter your deal</h3>
+              </div>
+              <span class="badge" id="dealBadge">Ready</span>
+            </div>
+
+            <div class="result-cards">
+              <article>
+                <span>Estimated lease payment</span>
+                <strong id="leasePayment">$0/mo</strong>
+                <small id="leaseApr">Money factor APR equivalent: 0%</small>
+              </article>
+              <article>
+                <span>Estimated finance payment</span>
+                <strong id="financePayment">$0/mo</strong>
+                <small id="loanAmount">$0 financed</small>
+              </article>
+            </div>
+            <div class="meaning-card">
+              <span>What this means</span>
+              <strong id="autoMeaning">The calculator will compare the real cash cost of leasing versus buying.</strong>
+            </div>
+
+            <div class="comparison-table" role="table" aria-label="Lease versus finance comparison">
+              <div role="row">
+                <span role="columnheader">Cost over lease term</span>
+                <strong role="columnheader">Lease</strong>
+                <strong role="columnheader">Finance</strong>
+              </div>
+              <div role="row">
+                <span role="rowheader">Cash out</span>
+                <strong id="leaseCash">$0</strong>
+                <strong id="financeCash">$0</strong>
+              </div>
+              <div role="row">
+                <span role="rowheader">Mileage / disposition</span>
+                <strong id="leaseExtras">$0</strong>
+                <strong>Included</strong>
+              </div>
+              <div role="row">
+                <span role="rowheader">Estimated equity</span>
+                <strong>$0</strong>
+                <strong id="financeEquity">$0</strong>
+              </div>
+              <div role="row" class="total-row">
+                <span role="rowheader">Net cost</span>
+                <strong id="leaseNet">$0</strong>
+                <strong id="financeNet">$0</strong>
+              </div>
+            </div>
+
+            <div class="insight-box">
+              <h4>What changed the result?</h4>
+              <ul id="insights"></ul>
+            </div>
+
+            <div class="score-strip">
+              <div>
+                <span>Lease score</span>
+                <strong id="leaseScore">0.00%</strong>
+              </div>
+              <div>
+                <span>1.25% rule</span>
+                <strong id="ruleStatus">Ready</strong>
+              </div>
+              <div>
+                <span>Zero-down equivalent</span>
+                <strong id="zeroDown">$0/mo</strong>
+              </div>
+            </div>
+
+            <div class="score-strip secondary-strip">
+              <div>
+                <span>Lease rate APR</span>
+                <strong id="effectiveApr">0.0%</strong>
+              </div>
+              <div>
+                <span>Break-even payment</span>
+                <strong id="breakEven">$0/mo</strong>
+              </div>
+              <div>
+                <span>Lease buyout estimate</span>
+                <strong id="leaseBuyout">$0</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="calculator-series-grid" aria-label="Everyday calculator categories">
+        <article class="category-calculator page-view" id="home" data-page="home" hidden>
+          <div class="category-head">
+            <div>
+              <p class="eyebrow">Home Calculator</p>
+              <h2>Home payment</h2>
+            </div>
+            <strong id="homeMonthly">$0/mo</strong>
+          </div>
+          <div class="category-form compact-form">
+            <label>
+              Home price
+              <input type="number" inputmode="decimal" id="homePrice" value="385000" min="0" step="5000" />
+            </label>
+            <label>
+              Down payment
+              <span class="input-suffix">
+                <input type="number" inputmode="decimal" id="homeDownPct" value="5" min="0" max="100" step="0.5" />
+                <span>%</span>
+              </span>
+            </label>
+            <label>
+              Mortgage rate
+              <span class="input-suffix">
+                <input type="number" inputmode="decimal" id="homeRate" value="6.75" min="0" max="25" step="0.05" />
+                <span>%</span>
+              </span>
+            </label>
+            <label>
+              Term
+              <span class="input-suffix">
+                <input type="number" inputmode="numeric" id="homeTerm" value="30" min="1" max="40" step="1" />
+                <span>yr</span>
+              </span>
+            </label>
+            <label>
+              Property tax
+              <span class="input-suffix">
+                <input type="number" inputmode="decimal" id="homeTaxPct" value="1.1" min="0" max="8" step="0.05" />
+                <span>%</span>
+              </span>
+            </label>
+            <label>
+              Insurance / HOA
+              <input type="number" inputmode="decimal" id="homeInsHoa" value="320" min="0" step="10" />
+            </label>
+          </div>
+          <div class="category-results">
+            <div><span>Loan amount</span><strong id="homeLoan">$0</strong></div>
+            <div><span>Income guide</span><strong id="homeIncome">$0/mo</strong></div>
+            <div><span>Cash down</span><strong id="homeCash">$0</strong></div>
+          </div>
+          <p class="meaning-card"><span>What this means</span><strong id="homeMeaning">This estimates the monthly housing payment before repairs and moving costs.</strong></p>
+          <div class="subtool-grid">
+            <section class="subtool">
+              <div class="subtool-head">
+                <h3>Rent check</h3>
+                <strong id="rentMax">$0/mo</strong>
+              </div>
+              <div class="category-form compact-form">
+                <label>
+                  Monthly income
+                  <input type="number" inputmode="decimal" id="rentIncome" value="5200" min="0" step="100" />
+                </label>
+                <label>
+                  Monthly debt
+                  <input type="number" inputmode="decimal" id="rentDebt" value="450" min="0" step="25" />
+                </label>
+                <label>
+                  Utilities
+                  <input type="number" inputmode="decimal" id="rentUtilities" value="225" min="0" step="25" />
+                </label>
+              </div>
+              <div class="category-results">
+                <div><span>Safe rent</span><strong id="rentSafe">$0/mo</strong></div>
+                <div><span>After bills</span><strong id="rentLeft">$0/mo</strong></div>
+                <div><span>Move-in cash</span><strong id="rentMoveIn">$0</strong></div>
+              </div>
+            </section>
+
+            <section class="subtool">
+              <div class="subtool-head">
+                <h3>Rent vs buy</h3>
+                <strong id="rentBuyWinner">Ready</strong>
+              </div>
+              <div class="category-form compact-form">
+                <label>
+                  Monthly rent
+                  <input type="number" inputmode="decimal" id="rentMonthly" value="2100" min="0" step="50" />
+                </label>
+                <label>
+                  Years staying
+                  <select id="rentBuyYears">
+                    <option value="3">3</option>
+                    <option value="5" selected>5</option>
+                    <option value="7">7</option>
+                    <option value="10">10</option>
+                  </select>
+                </label>
+                <label>
+                  Rent increase
+                  <span class="input-suffix">
+                    <input type="number" inputmode="decimal" id="rentIncrease" value="4" min="0" max="20" step="0.5" />
+                    <span>%/yr</span>
+                  </span>
+                </label>
+              </div>
+              <div class="category-results">
+                <div><span>Rent total</span><strong id="rentTotal">$0</strong></div>
+                <div><span>Buy cash cost</span><strong id="buyTotal">$0</strong></div>
+                <div><span>Gap</span><strong id="rentBuyGap">$0</strong></div>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <article class="category-calculator page-view" id="finance" data-page="finance" hidden>
+          <div class="category-head">
+            <div>
+              <p class="eyebrow">Finance Calculator</p>
+              <h2>Debt payoff</h2>
+            </div>
+            <strong id="debtMonths">0 mo</strong>
+          </div>
+          <div class="category-form debt-form">
+            <label>
+              Card balance
+              <input type="number" inputmode="decimal" id="debtOneBalance" value="4200" min="0" step="100" />
+            </label>
+            <label>
+              Card APR
+              <span class="input-suffix">
+                <input type="number" inputmode="decimal" id="debtOneApr" value="24.9" min="0" max="60" step="0.1" />
+                <span>%</span>
+              </span>
+            </label>
+            <label>
+              Card min
+              <input type="number" inputmode="decimal" id="debtOneMin" value="125" min="0" step="5" />
+            </label>
+            <label>
+              Loan balance
+              <input type="number" inputmode="decimal" id="debtTwoBalance" value="7800" min="0" step="100" />
+            </label>
+            <label>
+              Loan APR
+              <span class="input-suffix">
+                <input type="number" inputmode="decimal" id="debtTwoApr" value="12.5" min="0" max="60" step="0.1" />
+                <span>%</span>
+              </span>
+            </label>
+            <label>
+              Extra payoff
+              <input type="number" inputmode="decimal" id="debtExtra" value="250" min="0" step="25" />
+            </label>
+          </div>
+          <div class="category-results">
+            <div><span>Avalanche interest</span><strong id="debtInterest">$0</strong></div>
+            <div><span>First target</span><strong id="debtTarget">Ready</strong></div>
+            <div><span>Snowball gap</span><strong id="debtGap">$0</strong></div>
+          </div>
+          <p class="meaning-card"><span>What this means</span><strong id="financeMeaning">Extra payments go to the highest-rate debt first to save interest.</strong></p>
+          <div class="subtool-grid">
+            <section class="subtool">
+              <div class="subtool-head">
+                <h3>Loan payment</h3>
+                <strong id="simpleLoanPayment">$0/mo</strong>
+              </div>
+              <div class="category-form compact-form">
+                <label>
+                  Loan amount
+                  <input type="number" inputmode="decimal" id="simpleLoanAmount" value="15000" min="0" step="500" />
+                </label>
+                <label>
+                  Interest rate
+                  <span class="input-suffix">
+                    <input type="number" inputmode="decimal" id="simpleLoanRate" value="8.5" min="0" max="40" step="0.1" />
+                    <span>%</span>
+                  </span>
+                </label>
+                <label>
+                  Loan length
+                  <select id="simpleLoanTerm">
+                    <option value="24">24 mo</option>
+                    <option value="36">36 mo</option>
+                    <option value="48">48 mo</option>
+                    <option value="60" selected>60 mo</option>
+                    <option value="72">72 mo</option>
+                  </select>
+                </label>
+              </div>
+              <div class="category-results">
+                <div><span>Total paid</span><strong id="simpleLoanTotal">$0</strong></div>
+                <div><span>Interest</span><strong id="simpleLoanInterest">$0</strong></div>
+                <div><span>Payoff date</span><strong id="simpleLoanDate">Ready</strong></div>
+              </div>
+            </section>
+
+            <section class="subtool">
+              <div class="subtool-head">
+                <h3>Emergency fund</h3>
+                <strong id="emergencyGoal">$0</strong>
+              </div>
+              <div class="category-form compact-form">
+                <label>
+                  Monthly bills
+                  <input type="number" inputmode="decimal" id="emergencyBills" value="3200" min="0" step="100" />
+                </label>
+                <label>
+                  Months covered
+                  <select id="emergencyMonths">
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="9">9</option>
+                  </select>
+                </label>
+                <label>
+                  Saved now
+                  <input type="number" inputmode="decimal" id="emergencySaved" value="2500" min="0" step="100" />
+                </label>
+              </div>
+              <div class="category-results">
+                <div><span>Still needed</span><strong id="emergencyGap">$0</strong></div>
+                <div><span>$250/mo pace</span><strong id="emergencyPace">0 mo</strong></div>
+                <div><span>Status</span><strong id="emergencyStatus">Ready</strong></div>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <article class="category-calculator page-view" id="fuel" data-page="fuel" hidden>
+          <div class="category-head">
+            <div>
+              <p class="eyebrow">Fuel Calculator</p>
+              <h2>Commute cost</h2>
+            </div>
+            <strong id="commuteMonthly">$0/mo</strong>
+          </div>
+          <div class="category-form compact-form">
+            <label>
+              Round-trip miles
+              <input type="number" inputmode="decimal" id="commuteMiles" value="38" min="0" step="1" />
+            </label>
+            <label>
+              Days / month
+              <input type="number" inputmode="numeric" id="commuteDays" value="22" min="0" step="1" />
+            </label>
+            <label>
+              MPG
+              <input type="number" inputmode="decimal" id="commuteMpg" value="28" min="1" step="1" />
+            </label>
+            <label>
+              Gas price
+              <span class="input-suffix">
+                <input type="number" inputmode="decimal" id="commuteGas" value="3.65" min="0" step="0.05" />
+                <span>/gal</span>
+              </span>
+            </label>
+            <label>
+              Parking / tolls
+              <input type="number" inputmode="decimal" id="commuteFees" value="65" min="0" step="5" />
+            </label>
+            <label>
+              Better MPG
+              <input type="number" inputmode="decimal" id="commuteBetterMpg" value="38" min="1" step="1" />
+            </label>
+          </div>
+          <div class="category-results">
+            <div><span>Annual cost</span><strong id="commuteAnnual">$0</strong></div>
+            <div><span>Cost / mile</span><strong id="commutePerMile">$0.00</strong></div>
+            <div><span>MPG savings</span><strong id="commuteSavings">$0/mo</strong></div>
+          </div>
+          <p class="meaning-card"><span>What this means</span><strong id="fuelMeaning">This is the fuel and toll cost of getting to work each month.</strong></p>
+          <div class="subtool-grid">
+            <section class="subtool">
+              <div class="subtool-head">
+                <h3>Road trip</h3>
+                <strong id="roadTripTotal">$0</strong>
+              </div>
+              <div class="category-form compact-form">
+                <label>
+                  Trip miles
+                  <input type="number" inputmode="decimal" id="roadTripMiles" value="650" min="0" step="25" />
+                </label>
+                <label>
+                  MPG
+                  <input type="number" inputmode="decimal" id="roadTripMpg" value="28" min="1" step="1" />
+                </label>
+                <label>
+                  Gas price
+                  <span class="input-suffix">
+                    <input type="number" inputmode="decimal" id="roadTripGas" value="3.65" min="0" step="0.05" />
+                    <span>/gal</span>
+                  </span>
+                </label>
+                <label>
+                  Tolls / parking
+                  <input type="number" inputmode="decimal" id="roadTripFees" value="45" min="0" step="5" />
+                </label>
+                <label>
+                  Nights away
+                  <input type="number" inputmode="numeric" id="roadTripNights" value="2" min="0" step="1" />
+                </label>
+                <label>
+                  Hotel / night
+                  <input type="number" inputmode="decimal" id="roadTripHotel" value="140" min="0" step="10" />
+                </label>
+              </div>
+              <div class="category-results">
+                <div><span>Gas cost</span><strong id="roadTripFuel">$0</strong></div>
+                <div><span>Stay cost</span><strong id="roadTripStay">$0</strong></div>
+                <div><span>Cost / mile</span><strong id="roadTripPerMile">$0.00</strong></div>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <article class="category-calculator page-view" id="shopping" data-page="shopping" hidden>
+          <div class="category-head">
+            <div>
+              <p class="eyebrow">Shopping Calculator</p>
+              <h2>Best unit price</h2>
+            </div>
+            <strong id="shoppingWinner">Ready</strong>
+          </div>
+          <div class="category-form compact-form">
+            <label>
+              Option A price
+              <input type="number" inputmode="decimal" id="shopAPrice" value="12.99" min="0" step="0.01" />
+            </label>
+            <label>
+              Option A units
+              <input type="number" inputmode="decimal" id="shopAUnits" value="24" min="0.01" step="0.01" />
+            </label>
+            <label>
+              Option B price
+              <input type="number" inputmode="decimal" id="shopBPrice" value="19.99" min="0" step="0.01" />
+            </label>
+            <label>
+              Option B units
+              <input type="number" inputmode="decimal" id="shopBUnits" value="40" min="0.01" step="0.01" />
+            </label>
+            <label>
+              Coupon / sale
+              <span class="input-suffix">
+                <input type="number" inputmode="decimal" id="shopCoupon" value="10" min="0" max="100" step="1" />
+                <span>%</span>
+              </span>
+            </label>
+            <label>
+              Sales tax
+              <span class="input-suffix">
+                <input type="number" inputmode="decimal" id="shopTax" value="6.5" min="0" max="15" step="0.1" />
+                <span>%</span>
+              </span>
+            </label>
+          </div>
+          <div class="category-results">
+            <div><span>A unit price</span><strong id="shopAUnit">$0.00</strong></div>
+            <div><span>B unit price</span><strong id="shopBUnit">$0.00</strong></div>
+            <div><span>Savings</span><strong id="shopSavings">$0.00</strong></div>
+          </div>
+          <p class="meaning-card"><span>What this means</span><strong id="shoppingMeaning">The lower unit price is usually the better grocery buy.</strong></p>
+          <div class="subtool-grid">
+            <section class="subtool">
+              <div class="subtool-head">
+                <h3>Grocery budget</h3>
+                <strong id="groceryMonthly">$0/mo</strong>
+              </div>
+              <div class="category-form compact-form">
+                <label>
+                  People
+                  <select id="groceryPeople">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5+</option>
+                  </select>
+                </label>
+                <label>
+                  Trips / week
+                  <input type="number" inputmode="decimal" id="groceryTrips" value="1.5" min="0" step="0.5" />
+                </label>
+                <label>
+                  Average basket
+                  <input type="number" inputmode="decimal" id="groceryBasket" value="115" min="0" step="5" />
+                </label>
+                <label>
+                  Coupon savings
+                  <span class="input-suffix">
+                    <input type="number" inputmode="decimal" id="groceryCoupon" value="8" min="0" max="80" step="1" />
+                    <span>%</span>
+                  </span>
+                </label>
+                <label>
+                  Meals out replaced
+                  <input type="number" inputmode="decimal" id="mealsReplaced" value="4" min="0" step="1" />
+                </label>
+                <label>
+                  Meal-out cost
+                  <input type="number" inputmode="decimal" id="mealOutCost" value="16" min="0" step="1" />
+                </label>
+              </div>
+              <div class="category-results">
+                <div><span>Per person</span><strong id="groceryPerPerson">$0/mo</strong></div>
+                <div><span>Coupon saves</span><strong id="grocerySaved">$0/mo</strong></div>
+                <div><span>Eating-in saves</span><strong id="mealSavings">$0/mo</strong></div>
+              </div>
+            </section>
+
+            <section class="subtool">
+              <div class="subtool-head">
+                <h3>Trip total</h3>
+                <strong id="tripTotal">$0</strong>
+              </div>
+              <div class="category-form compact-form">
+                <label>
+                  Flight / person
+                  <input type="number" inputmode="decimal" id="tripFlight" value="325" min="0" step="25" />
+                </label>
+                <label>
+                  Travelers
+                  <select id="tripTravelers">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </label>
+                <label>
+                  Bags / seats
+                  <input type="number" inputmode="decimal" id="tripAirFees" value="160" min="0" step="10" />
+                </label>
+                <label>
+                  Nights
+                  <input type="number" inputmode="numeric" id="tripNights" value="3" min="0" step="1" />
+                </label>
+                <label>
+                  Hotel / night
+                  <input type="number" inputmode="decimal" id="tripHotel" value="185" min="0" step="10" />
+                </label>
+                <label>
+                  Food / day
+                  <input type="number" inputmode="decimal" id="tripFood" value="95" min="0" step="5" />
+                </label>
+              </div>
+              <div class="category-results">
+                <div><span>Air total</span><strong id="tripAirTotal">$0</strong></div>
+                <div><span>Stay + food</span><strong id="tripStayFood">$0</strong></div>
+                <div><span>Daily average</span><strong id="tripDaily">$0/day</strong></div>
+              </div>
+            </section>
+          </div>
+        </article>
+      </section>
+
+      <section class="partner-slot" aria-label="Future partner placement">
+        <p class="eyebrow">Partner Slot</p>
+        <p>Reserved for a relevant, clearly labeled offer. No popups, no fake urgency, no blocking the calculator.</p>
+      </section>
+
+      <nav class="seo-links" aria-label="Calculator guides">
+        <a href="./lease-vs-finance.html">Lease vs finance guide</a>
+        <a href="./home-calculators.html">Home calculator guide</a>
+        <a href="./debt-payoff-calculator.html">Debt payoff guide</a>
+        <a href="./fuel-cost-calculator.html">Fuel cost guide</a>
+        <a href="./grocery-budget-calculator.html">Grocery budget guide</a>
+      </nav>
+
+      <section class="method" id="method" hidden>
+        <div>
+          <p class="eyebrow">Method</p>
+          <h2>Built for transparent shopping.</h2>
+        </div>
+        <p>
+          The lease estimate uses capitalized cost, residual value, money factor,
+          term, incentives, taxes, and end-of-lease extras. The finance estimate
+          uses APR, term, taxes, fees, down payment, remaining loan balance, and
+          estimated resale value so both choices are compared over the same period.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Irie Calculator</span>
+      <span>Educational estimates only. Always compare against the contract disclosures.</span>
+    </footer>
+
+    <script src="./app.js?v=irie"></script>
+  </body>
+</html>

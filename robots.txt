@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+LLMs: /llms.txt
+Sitemap: https://irie-calculator.vercel.app/sitemap.xml
